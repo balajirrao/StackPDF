@@ -1,18 +1,17 @@
 <html>
 	<head>
 		<link href="style.css" type="text/css" rel="stylesheet" />
-		<script src="tempo.min.js" type="text/javascript"></script>
-		<script src="qdata.js" type="text/javascript"></script>
+		<script src="tempo.js" type="text/javascript"></script>
+		<script src="question.js" type="text/javascript"></script>
 		<script src="jquery-1.6.1.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
+
 			$(document).ready(function() {
-				var i = qdata.question_no;
-				
 				questionTemplate = Tempo.prepare('question');
 				answersTemplate = Tempo.prepare('answers-list');
 
-				questionTemplate.append(qdata.questions[i]);
-				answersTemplate.append(qdata.questions[i].answers);
+				questionTemplate.append(question);
+				answersTemplate.append(question.answers);
 			});
 		</script>
 		<script type="text/x-mathjax-config">
@@ -31,14 +30,30 @@
 	<body>
 		<div id = "question">
 			<h1>{{title}}</h1>
-			<p>{{body}}</p>
-			<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+			<p class="body">{{body}}</p>
+			<p class="owner">
+				{{question_id}} <br />
+				{{owner.display_name}}({{owner.reputation}})
+				<br />
+				{{creation_date | date 'HH:mm DD-MM-YYYY'}}
+			</p>
+
+
+			<div class="stats">
+				<img src="img/upvote.png">{{up_vote_count}} </img>
+				<img src="img/downvote.png">{{down_vote_count}}</img>
+				<img src="img/favourite.png">{{favorite_count}}</img>
+			</div>
 
 			<ul>
 				<li data-template="comments">
 					<div class="comment">
-						<p>{{body}}</p>
-						<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+						<p><b>{{score}}</b>    {{body}}</p>
+						<p class="owner">
+							{{owner.display_name}}({{owner.reputation}})
+							<br />
+							{{creation_date | date 'HH:mm DD-MM-YYYY'}}
+						</p>
 					</div>
 				</li>
 			</ul>
@@ -48,14 +63,33 @@
 			<li> 
 			<div class="answer">
 				<p>{{body}}</p>
-				<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
-				<h4>[{{score}}] Accepted : {{accepted}}</h4>
+				
+				<p class="owner">
+					{{owner.display_name}}({{owner.reputation}})
+					<br />
+					{{creation_date | date 'HH:mm DD-MM-YYYY'}}
+					</p>
+					
+				<div class="stats">
+					{% if accepted === true %}
+					<img src="img/checked.png" />
+					{% endif %}
+
+					<img src="img/upvote.png">{{up_vote_count}} </img>
+					<img src="img/downvote.png">{{down_vote_count}}</img>						
+				</div>
+				
 					<div class="comment-list">
 						<ul>
 							<li data-template="comments">
 								<div class="comment">
-									<p>{{body}}</p>
-									<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+								<p><b>{{score}}</b>    {{body}}</p>
+									<p class="owner">
+							{{owner.display_name}}({{owner.reputation}})
+							<br />
+							{{creation_date | date 'HH:mm DD-MM-YYYY'}}
+						</p>
+
 								</div>
 							</li>
 						</ul>
