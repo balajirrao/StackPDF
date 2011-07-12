@@ -1,1 +1,11 @@
-This is a hacky project to pull latest questions out of a StackExchange site.
+* This is a hacky project to pull latest questions out of a StackExchange site.
+
+* See question.html for details. MathJAX and Tempo need to be downloaded.
+  A small hack is required in tempo to multiply dates by 1000 before
+  processing.
+
+* Create a folder called tags and create empty files for each tag. Sorry,
+  it does not work if you have to fetch all questions, yet.
+
+* Create a folder called questions which will be the temporary working
+  directory.
