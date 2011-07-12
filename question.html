@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<link href="style.css" type="text/css" rel="stylesheet" />
+		<script src="tempo.min.js" type="text/javascript"></script>
+		<script src="qdata.js" type="text/javascript"></script>
+		<script src="jquery-1.6.1.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var i = qdata.question_no;
+				
+				questionTemplate = Tempo.prepare('question');
+				answersTemplate = Tempo.prepare('answers-list');
+
+				questionTemplate.append(qdata.questions[i]);
+				answersTemplate.append(qdata.questions[i].answers);
+			});
+		</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({"HTML-CSS": { preferredFont: "STIX", availableFonts: ["STIX","TeX"] },
+				tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], 
+					processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+				TeX: { noUndefined: { attributes: { mathculor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+				messageStyle: "none"
+			});
+			
+			MathJax.Hub.Queue(function() {window.status='Q'});
+		</script>
+		<script type="text/javascript" src="file:///home/balaji/git/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+	</head>
+
+	<body>
+		<div id = "question">
+			<h1>{{title}}</h1>
+			<p>{{body}}</p>
+			<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+
+			<ul>
+				<li data-template="comments">
+					<div class="comment">
+						<p>{{body}}</p>
+						<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+				
+		<ul id = "answers-list">
+			<li> 
+			<div class="answer">
+				<p>{{body}}</p>
+				<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+				<h4>[{{score}}] Accepted : {{accepted}}</h4>
+					<div class="comment-list">
+						<ul>
+							<li data-template="comments">
+								<div class="comment">
+									<p>{{body}}</p>
+									<p class="owner">{{owner.display_name}}({{owner.reputation}})</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</body>
+</html>

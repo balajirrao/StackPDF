@@ -1,0 +1,28 @@
+p.owner {
+    font-size: 75%;
+    line-height: 0.5;
+    text-align : right;
+}
+
+.comment {
+    color: #444444;
+    font-size: 85%;
+    vertical-align: middle;
+}
+
+.comment-list {
+    list-style: square outside none;
+}
+
+.answer {
+	page-break-after: always;
+}
+
+#question {
+	page-break-after: always;
+}
+
+#answers-list {
+    list-style: none outside none;
+}
+
